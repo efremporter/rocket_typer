@@ -53,6 +53,12 @@ document.addEventListener("DOMContentLoaded", function() {
     update() {
       this.y += this.speed;
     }
+    onScreen() {
+      if (this.y === canvas.height) {
+        console.log("hello");
+        this.visible = false;
+      }
+    }
   }
 
   function generateRandomWord() {
@@ -108,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
       radius: radius,
       color: "grey",
       word: word,
-      speed: 0.5,
+      speed: 0,
       visible: true
     };
     asteroids.push(new Asteroid(hash));
@@ -125,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
           radius: radius,
           color: "grey",
           word: word,
-          speed: 0.5,
+          speed: 0,
           visible: true
         };
         asteroids.push(new Asteroid(hash));
@@ -138,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ctx.fillRect(0, 0, 1500, 750);;
     asteroids.forEach(a => {
       if (a.visible) {
+        a.onScreen();
         a.draw(ctx);
         a.update();
       }
