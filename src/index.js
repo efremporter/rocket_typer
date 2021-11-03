@@ -54,8 +54,8 @@ document.addEventListener("DOMContentLoaded", function() {
       this.y += this.speed;
     }
     hitBottom() {
-      if (this.y === canvas.height) {
-        this.y = canvas.height + 1000;
+      if (this.y >= canvas.height && this.y <= canvas.height + 1000) {
+        this.y = canvas.height + 1001;
         this.visible = false;
         lives--;
         return true;
@@ -119,8 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
       speed: 0.5,
       visible: true
     };
-    asteroids.push(new Asteroid(hash));
-    asteroids.push()
+    asteroids.unshift(new Asteroid(hash));
     setInterval(() => {
       const word = generateRandomWord();
       const radius =  getRadius(word);
@@ -208,30 +207,31 @@ document.addEventListener("DOMContentLoaded", function() {
     return range[Math.floor(Math.random() * range.length)];
   } 
   function checkLives() {
-    console.log(lives);
     if (lives <= 0) {
+      alert(`You got to level: ${level} \nYour score was ${score}`);
+      alert(`You got to level: ${level} \nYour score was ${score}`);
       lives = 3;
       score = 0;
       level = 1;
       asteroids = [];
-      // generateAsteroids();
-      // animate();
     }
   }
 
-  
   let score = 0;
   let level = 1;
   let lives = 3;
   
   function checkLevel() {
+    document.getElementById("level").innerHTML = `Level: ${level}`;
+    document.getElementById("score").innerHTML = `Score: ${score}`;
+    document.getElementById("lives").innerHTML = `Lives: ${lives}`;
     if (score >= 10) level = 2;
     if (score >= 30) level = 3;
-    if (score >= 50) level = 4;
-    if (score >= 70) level = 5;
-    if (score >= 90) level = 6;
-    if (score >= 110) level = 7;
-    if (score >= 150) level = 8;
+    if (score >= 60) level = 4;
+    if (score >= 100) level = 5;
+    if (score >= 150) level = 6;
+    if (score >= 200) level = 7;
+    if (score >= 300) level = 8;
   }
 
   let asteroids = [];
@@ -250,4 +250,7 @@ document.addEventListener("DOMContentLoaded", function() {
     checkWord(guess);
     document.getElementById("word").value = ""; 
   }
+  document.getElementById("level").innerHTML = `Level: ${level}`;
+
+  
 })

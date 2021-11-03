@@ -9,3 +9,11 @@ h1 {
 #canvas {
   margin-left: 110px;
 }
+
+/* #button {
+  margin-right: 350px;
+} */
+
+#level, #score, #lives {
+  margin-left: 569px;
+}
