@@ -2,9 +2,10 @@ h1 {
   text-align: center;
 }
 
-body {
-  margin: 0px;
+#div1 {
+  margin-left: 620px;
 }
 
-/* canvas.height = 822;
-canvas.width = 1672; */
+#canvas {
+  margin-left: 110px;
+}

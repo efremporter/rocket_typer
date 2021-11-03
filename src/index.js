@@ -53,10 +53,12 @@ document.addEventListener("DOMContentLoaded", function() {
     update() {
       this.y += this.speed;
     }
-    onScreen() {
+    hitBottom() {
       if (this.y === canvas.height) {
-        console.log("hello");
+        this.y = canvas.height + 1000;
         this.visible = false;
+        lives--;
+        return true;
       }
     }
   }
@@ -106,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
   
   function generateAsteroids() {
     const word = generateRandomWord();
-    const radius =  getRadius(word);
+    const radius = getRadius(word);
     const x = getX(radius);
     const hash = {
       x: x,
@@ -114,37 +116,59 @@ document.addEventListener("DOMContentLoaded", function() {
       radius: radius,
       color: "grey",
       word: word,
-      speed: 0,
+      speed: 0.5,
       visible: true
     };
     asteroids.push(new Asteroid(hash));
     asteroids.push()
-    console.log(level);
+    setInterval(() => {
+      const word = generateRandomWord();
+      const radius =  getRadius(word);
+      const hash = {
+        x: getX(radius),
+        y: 0 - radius,
+        radius: radius,
+        color: "grey",
+        word: word,
+        speed: getSpeed(),
+        visible: true
+      };
+      asteroids.push(new Asteroid(hash));
+    }, 1000)
+  }
+  function getSpeed() {
     if (level === 1) {
-      setInterval(() => {
-        const word = generateRandomWord();
-        const radius =  getRadius(word);
-        const x = getX(radius);
-        const hash = {
-          x: x,
-          y: 0 - radius,
-          radius: radius,
-          color: "grey",
-          word: word,
-          speed: 0,
-          visible: true
-        };
-        asteroids.push(new Asteroid(hash));
-      }, 7000)
+      return 0.5;
+    } else if (level === 2) {
+      return 0.75;
+    } else if (level === 3) {
+      return 1;
+    } else if (level === 4) {
+      return 1.25;
+    } else if (level === 5) {
+      return 1.5;
+    } else if (level === 6) {
+      return 1.75;
+    } else if (level === 7) {
+      return 2;
+    } else if (level === 8) {
+      return 2.25;
+    } else if (level === 9) {
+      return 2.5;
+    } else if (level === 10) {
+      return 2.75
     }
   }
+
   function animate() {
     requestAnimationFrame(animate);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillRect(0, 0, 1500, 750);;
+    ctx.fillRect(0, 0, 1500, 750);
+    checkLevel();
     asteroids.forEach(a => {
+      checkLives();
+      a.hitBottom();
       if (a.visible) {
-        a.onScreen();
         a.draw(ctx);
         a.update();
       }
@@ -183,13 +207,37 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     return range[Math.floor(Math.random() * range.length)];
   } 
+  function checkLives() {
+    console.log(lives);
+    if (lives <= 0) {
+      lives = 3;
+      score = 0;
+      level = 1;
+      asteroids = [];
+      // generateAsteroids();
+      // animate();
+    }
+  }
 
+  
   let score = 0;
-  let level = 0;
-  if (score % 20 === 0) level += 1;
-  const asteroids = [];
+  let level = 1;
+  let lives = 3;
+  
+  function checkLevel() {
+    if (score >= 10) level = 2;
+    if (score >= 30) level = 3;
+    if (score >= 50) level = 4;
+    if (score >= 70) level = 5;
+    if (score >= 90) level = 6;
+    if (score >= 110) level = 7;
+    if (score >= 150) level = 8;
+  }
+
+  let asteroids = [];
   generateAsteroids();
   animate();
+
   document.getElementById("word")
     .addEventListener("keypress", function(key) {
       if (key.key === 'Enter') {
