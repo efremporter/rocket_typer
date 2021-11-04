@@ -1,5 +1,4 @@
 // const Game = require "./game.js"
-console.log("Webpack is working!");
 document.addEventListener("DOMContentLoaded", function() {
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
@@ -7,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
   canvas.width = 1200;
   ctx.fillStyle = "black"
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+  alert(`\nInstructions:\n\nType each word on the asteroid to destroy it. If three asteroids reach the ground before you type the word, game over.\n\nEach level will get progressively harder. `)
   
   class Asteroid {
     constructor(args) {
@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function addScore(num) {
     score += num;
-    console.log(score);
   }
   
   function generateAsteroids() {
@@ -252,5 +251,4 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   document.getElementById("level").innerHTML = `Level: ${level}`;
 
-  
 })
