@@ -20,5 +20,7 @@
   }
 
   body {
-    background-color: gainsboro;
+    /* background-color: gainsboro; */
+    background-image: url("https://starlust.org/wp-content/uploads/elementor/thumbs/the-biggest-asteroids-pcj1r7kq5287ka67kbqjqnxqs3yj8xrh1df6vwsefk.jpg");
+    display: flex;
   }

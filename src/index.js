@@ -225,8 +225,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("score").innerHTML = `Score: ${score}`;
     document.getElementById("lives").innerHTML = `Lives: ${lives}`;
     if (score >= 10) level = 2;
-    if (score >= 30) level = 3;
-    if (score >= 60) level = 4;
+    if (score >= 40) level = 3;
+    if (score >= 70) level = 4;
     if (score >= 100) level = 5;
     if (score >= 150) level = 6;
     if (score >= 200) level = 7;
@@ -252,5 +252,3 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("level").innerHTML = `Level: ${level}`;
 
 })
-
-//comment
