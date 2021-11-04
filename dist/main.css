@@ -1,0 +1,23 @@
+h1 {
+  text-align: center;
+}
+
+#div1 {
+  margin-left: 620px;
+}
+
+#canvas {
+  margin-left: 110px;
+}
+
+/* #button {
+  margin-right: 350px;
+} */
+
+#level, #score, #lives {
+  margin-left: 569px;
+}
+
+body {
+  background-color: gainsboro;
+}

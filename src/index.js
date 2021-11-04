@@ -252,3 +252,5 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("level").innerHTML = `Level: ${level}`;
 
 })
+
+//comment
